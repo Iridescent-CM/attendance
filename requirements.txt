@@ -1,4 +1,5 @@
 Django==1.7.1
 dj-database-url==0.3.0
+psycopg2==2.5.4
 waitress==0.8.9
 wsgiref==0.1.2
