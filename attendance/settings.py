@@ -78,6 +78,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = 'staticfiles'
+
 # Import optional local settings.  This must be at the END of this file.
 try:
     from .local import *
