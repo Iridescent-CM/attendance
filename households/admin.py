@@ -9,6 +9,7 @@ class StudentWithKeytags(admin.ModelAdmin):
     inlines = [KeytagInline]
     search_fields = ('first_name', 'last_name', 'keytags__barcode')
     list_display = ('__str__', '_keytags')
+    filter_horizontal = ('attended',)
 
     def _keytags(self, obj):
         return ', '.join(str(x) for x in obj.keytags.all())
