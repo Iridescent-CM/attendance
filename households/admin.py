@@ -7,8 +7,9 @@ class KeytagInline(admin.TabularInline):
 
 class StudentWithKeytags(admin.ModelAdmin):
     inlines = [KeytagInline]
-    search_fields = ('first_name', 'last_name', 'keytags__barcode')
-    list_display = ('__str__', '_keytags')
+    search_fields = ('first_name', 'last_name', 'keytags__barcode', 'zip_code')
+    list_display = ('last_name', 'first_name', 'zip_code', '_keytags')
+    list_display_links = ('last_name', 'first_name')
     filter_horizontal = ('attended',)
 
     def _keytags(self, obj):
