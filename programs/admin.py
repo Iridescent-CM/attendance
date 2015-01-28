@@ -25,6 +25,7 @@ class SessionAdminForm(forms.ModelForm):
 
     class Meta:
         model = models.Session
+        exclude = []
 
     def __init__(self, *args, **kwargs):
         super(SessionAdminForm, self).__init__(*args, **kwargs)

@@ -9,7 +9,7 @@ class Program(models.Model):
 class Session(models.Model):
     program = models.ForeignKey('Program', related_name='sessions')
     description = models.CharField(max_length=255)
-    time = models.TimeField()
+    time = models.TimeField(null=True, blank=True)
     date = models.DateField()
 
     def __str__(self):
