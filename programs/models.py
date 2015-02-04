@@ -13,4 +13,4 @@ class Session(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return "{}: Session {}".format(self.program, self.id)
+        return "{}: {}".format(self.program, self.description)
