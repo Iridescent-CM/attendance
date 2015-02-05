@@ -106,7 +106,7 @@ class Student(models.Model):
     birthdate = models.DateField(null=True, blank=True)
 
     email = models.EmailField(null=True, blank=True)
-    cell_phone = models.CharField(max_length=10, null=True, blank=True)
+    cell_phone = models.CharField(max_length=25, null=True, blank=True)
 
     attended = models.ManyToManyField('programs.Session', null=True, blank=True, related_name='attendees')
     household = models.ForeignKey('Household', null=True, blank=True, related_name='students')
