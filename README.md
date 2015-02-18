@@ -7,6 +7,7 @@
 Use the above button to deploy a new instance of this project to Heroku! Then log in to your new instance with
 * username: **admin**
 * password: **changeme**
+
 and explore!
 
 ### Security
