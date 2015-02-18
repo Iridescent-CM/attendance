@@ -1,0 +1,15 @@
+{
+  "name": "Attendance",
+  "description": "An attendance app",
+  "repository": "https://github.com/Iridescent-CM/attendance",
+  "env": {
+    "SECRET_KEY": {
+      "description": "A secret key for a particular Django installation. This is used to provide cryptographic signing, and should be set to a unique, unpredictable value.",
+      "generator": "secret"
+    },
+    "ALLOWED_HOSTS": {
+      "description": "A comma-separated list of strings representing the host/domain names that this Django site can serve.",
+      "value": "*"
+    }
+  }
+}
