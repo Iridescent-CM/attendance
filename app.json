@@ -13,6 +13,6 @@
     }
   },
   "scripts": {
-    "postdeploy": "python manage.py migrate; python manage.py loaddata heroku-button-user"
+    "postdeploy": "python manage.py migrate; python manage.py loaddata attendance/fixtures/heroku-button-user.json"
   }
 }
