@@ -11,5 +11,8 @@
       "description": "A comma-separated list of strings representing the host/domain names that this Django site can serve.",
       "value": "*"
     }
+  },
+  "scripts": {
+    "postdeploy": "python manage.py migrate"
   }
 }
