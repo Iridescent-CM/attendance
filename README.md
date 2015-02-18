@@ -4,7 +4,7 @@
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Use the above button to deploy a new instance of this project to Heroku! Then log in to your new instance with
+Use the above button to deploy a new instance of this project to Heroku. Then log in to your new instance with
 * username: **admin**
 * password: **changeme**
 
