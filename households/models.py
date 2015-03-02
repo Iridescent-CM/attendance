@@ -48,6 +48,7 @@ class Person(models.Model):
     person_subtype = models.ForeignKey('PersonSubtype', null=True, blank=True)
 
     attended = models.ManyToManyField('programs.Session', null=True, blank=True, related_name='attendees')
+    schools = models.ManyToManyField('School', null=True, blank=True, related_name='people')
 
     def __str__(self):
         keytags = ",".join(tag.barcode for tag in self.keytags.all())
@@ -55,3 +56,23 @@ class Person(models.Model):
 
     class Meta:
         verbose_name_plural = "People"
+
+class School(models.Model):
+    class Meta:
+        unique_together = ('global_id_type', 'global_id_value',)
+
+    global_id_type = models.CharField(max_length=10, verbose_name='Type of GID')
+    global_id_value = models.CharField(max_length=10, verbose_name='GID')
+
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, blank=True, null=True)
+    zip_code = models.CharField(max_length=9, blank=True, null=True)
+    phone = models.CharField(max_length=10, blank=True, null=True)
+    fax = models.CharField(max_length=10, blank=True, null=True)
+    state = models.CharField(max_length=2, choices=choices.STATE_CHOICES, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    website = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return "{} [{}: {}]".format(self.name, self.global_id_type, self.global_id_value)
+    
