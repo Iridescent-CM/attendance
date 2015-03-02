@@ -60,9 +60,9 @@ class Person(models.Model):
 class School(models.Model):
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255, blank=True, null=True)
-    zip_code = models.CharField(max_length=9, blank=True, null=True)
-    phone = models.CharField(max_length=10, blank=True, null=True)
-    fax = models.CharField(max_length=10, blank=True, null=True)
+    zip_code = models.CharField(max_length=10, blank=True, null=True)
+    phone = models.CharField(max_length=14, blank=True, null=True)
+    fax = models.CharField(max_length=14, blank=True, null=True)
     state = models.CharField(max_length=2, choices=choices.STATE_CHOICES, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     website = models.URLField(blank=True, null=True)
