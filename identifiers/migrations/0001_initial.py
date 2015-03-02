@@ -14,9 +14,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Keytag',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('barcode', models.CharField(max_length=20)),
-                ('holder', models.ForeignKey(related_name='keytags', to='households.Student')),
+                ('holder', models.ForeignKey(null=True, related_name='keytags', blank=True, to='households.Person')),
             ],
             options={
             },

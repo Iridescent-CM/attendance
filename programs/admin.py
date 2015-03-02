@@ -9,16 +9,22 @@ class SessionInline(admin.TabularInline):
 
 class ProgramWithSessions(admin.ModelAdmin):
     inlines = [ SessionInline ]
+    list_display = ('name', 'id', 'session_count')
+    search_fields = ('name',)
+
+    def session_count(self, obj):
+        return obj.sessions.count()
+    session_count.short_description = '# Sessions'
 
 class AttendeeInline(admin.TabularInline):
-    model = households.Student.attended.through
+    model = households.Person.attended.through
 
 class SessionAdminForm(forms.ModelForm):
     attendees = forms.ModelMultipleChoiceField(
-        queryset=households.Student.objects.all(),
+        queryset=households.Person.objects.all(),
         required= False,
         widget=FilteredSelectMultiple(
-            verbose_name='Students',
+            verbose_name='Attendees',
             is_stacked=False
         )
     )
@@ -48,7 +54,12 @@ class SessionAdminForm(forms.ModelForm):
 class SessionAdmin(admin.ModelAdmin):
     form = SessionAdminForm
 
-    list_display = ('__str__', 'program', 'description', 'time', 'date')
+    list_display = ('description', 'program', 'time', 'date', 'attendee_count', 'id')
+    search_fields = ('description', 'program__name')
+
+    def attendee_count(self, obj):
+        return obj.attendees.count()
+    attendee_count.short_description = '# Attendees'
 
 admin.site.register(models.Program, ProgramWithSessions)
 admin.site.register(models.Session, SessionAdmin)
