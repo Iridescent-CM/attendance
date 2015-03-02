@@ -58,12 +58,6 @@ class Person(models.Model):
         verbose_name_plural = "People"
 
 class School(models.Model):
-    class Meta:
-        unique_together = ('global_id_type', 'global_id_value',)
-
-    global_id_type = models.CharField(max_length=10, verbose_name='Type of GID')
-    global_id_value = models.CharField(max_length=10, verbose_name='GID')
-
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255, blank=True, null=True)
     zip_code = models.CharField(max_length=9, blank=True, null=True)
@@ -74,5 +68,5 @@ class School(models.Model):
     website = models.URLField(blank=True, null=True)
 
     def __str__(self):
-        return "{} [{}: {}]".format(self.name, self.global_id_type, self.global_id_value)
+        return "{} [id: {}]".format(self.name, self.id)
     

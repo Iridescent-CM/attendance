@@ -45,21 +45,34 @@ class HouseholdWithMembers(admin.ModelAdmin):
     list_display = ('name', 'city', 'zip_code', 'id')
     search_fields = ('name',)
 
+class HasPeopleFilter(admin.SimpleListFilter):
+    title = 'Has people'
+    parameter_name = 'people'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('1', 'Yes'),
+            ('0', 'no')
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == None:
+            return queryset
+        elif self.value() == '1':
+            return queryset.exclude(people=None)
+        elif self.value() == '0':
+            return queryset.filter(people=None)
+
 class SchoolAdmin(admin.ModelAdmin):
-    list_display = ('name', 'global_id', 'city', 'zip_code', 'id')
-    list_filter = ('global_id_type',)
+    list_display = ('name', 'city', 'zip_code', 'id')
+    list_filter = (HasPeopleFilter,)
     fields = (
-        ('global_id_type', 'global_id_value'),
         'name', 
         'address', 
         ('city', 'state', 'zip_code'), 
         ('phone', 'fax', 'website')
     )
-    search_fields = ('name', 'global_id_type', 'global_id_value') 
-
-    def global_id(self, obj):
-        return "{}: {}".format(obj.global_id_type, obj.global_id_value)
-    global_id.short_description = 'Global ID'
+    search_fields = ('name',) 
 
 admin.site.register(models.Household, HouseholdWithMembers)
 admin.site.register(models.Person, PersonWithKeytags)
