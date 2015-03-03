@@ -20,6 +20,7 @@ class PersonWithKeytags(admin.ModelAdmin):
         'email',
         ('cell_phone', 'work_phone', 'other_phone'),
         'household',
+        'schools',
         'attended'
     )
 
@@ -44,7 +45,37 @@ class HouseholdWithMembers(admin.ModelAdmin):
     list_display = ('name', 'city', 'zip_code', 'id')
     search_fields = ('name',)
 
+class HasPeopleFilter(admin.SimpleListFilter):
+    title = 'Has people'
+    parameter_name = 'people'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('1', 'Yes'),
+            ('0', 'no')
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == None:
+            return queryset
+        elif self.value() == '1':
+            return queryset.exclude(people=None)
+        elif self.value() == '0':
+            return queryset.filter(people=None)
+
+class SchoolAdmin(admin.ModelAdmin):
+    list_display = ('name', 'city', 'zip_code', 'id')
+    list_filter = (HasPeopleFilter,)
+    fields = (
+        'name', 
+        'address', 
+        ('city', 'state', 'zip_code'), 
+        ('phone', 'fax', 'website')
+    )
+    search_fields = ('name',) 
+
 admin.site.register(models.Household, HouseholdWithMembers)
 admin.site.register(models.Person, PersonWithKeytags)
 admin.site.register(models.PersonType)
 admin.site.register(models.PersonSubtype)
+admin.site.register(models.School, SchoolAdmin)
