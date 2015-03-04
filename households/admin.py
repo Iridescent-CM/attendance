@@ -11,7 +11,7 @@ class PersonWithKeytags(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', '_keytags', 'household', 'id')
     list_display_links = ('last_name', 'first_name')
     list_filter = ('person_type__name', 'person_subtype__name')
-    filter_horizontal = ('attended',)
+    filter_horizontal = ('attended', 'schools')
     fields = (
         'last_name',
         ('first_name', 'middle_name'),
