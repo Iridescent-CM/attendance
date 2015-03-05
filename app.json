@@ -1,6 +1,6 @@
 {
-  "name": "Attendance",
-  "description": "An attendance app",
+  "name": "C.A.T.S.",
+  "description": "Community Attendance Tracking System",
   "repository": "https://github.com/Iridescent-CM/attendance",
   "env": {
     "SECRET_KEY": {

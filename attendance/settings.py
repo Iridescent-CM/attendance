@@ -25,6 +25,9 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", '').split(',') if os.getenv("ALLOWED_
 
 # Application definition
 
+SITE_TITLE = 'C.A.T.S.'
+SITE_HEADER = 'Community Attendance Tracking System'
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
