@@ -9,6 +9,9 @@ class Household(models.Model):
     state = models.CharField(max_length=2, choices=choices.STATE_CHOICES, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
 
+    def get_absolute_url(self):
+        return "/admin/households/household/%i" % self.id
+
     def __str__(self):
         return "{} [id: {}]".format(self.name, self.id)
 
@@ -54,6 +57,9 @@ class Person(models.Model):
         keytags = ",".join(tag.barcode for tag in self.keytags.all())
         return "{}, {} [id: {}, keytags:{}]".format(self.last_name, self.first_name, self.id, keytags)
 
+    def get_absolute_url(self):
+        return "/admin/households/person/%i" % self.id
+
     class Meta:
         verbose_name_plural = "People"
 
@@ -66,6 +72,9 @@ class School(models.Model):
     state = models.CharField(max_length=2, choices=choices.STATE_CHOICES, null=True, blank=True)
     city = models.CharField(max_length=100, null=True, blank=True)
     website = models.URLField(blank=True, null=True)
+
+    def get_absolute_url(self):
+        return "/admin/households/school/%i" % self.id
 
     def __str__(self):
         return "{} [id: {}]".format(self.name, self.id)
