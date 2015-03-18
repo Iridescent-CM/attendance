@@ -36,7 +36,7 @@ class PersonInline(admin.StackedInline):
         ('person_type', 'person_subtype'),
         ('sex', 'birthdate'),
         ('cell_phone', 'work_phone', 'other_phone'),
-        'email',
+        'email', 'schools',
     )
 
 class HouseholdWithMembers(admin.ModelAdmin):

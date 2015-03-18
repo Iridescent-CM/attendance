@@ -55,7 +55,8 @@ class Person(models.Model):
 
     def __str__(self):
         keytags = ",".join(tag.barcode for tag in self.keytags.all())
-        return "{}, {} [id: {}, keytags:{}]".format(self.last_name, self.first_name, self.id, keytags)
+        household = self.household.name if self.household else 'None'
+        return "{}, {} [id: {}, keytags:{}, household: {}]".format(self.last_name, self.first_name, self.id, keytags, household)
 
     def get_absolute_url(self):
         return "/admin/households/person/%i" % self.id
