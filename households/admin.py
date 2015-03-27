@@ -38,6 +38,7 @@ class PersonInline(admin.StackedInline):
         ('cell_phone', 'work_phone', 'other_phone'),
         'email', 'schools',
     )
+    filter_horizontal = ['schools']
 
 class HouseholdWithMembers(admin.ModelAdmin):
     inlines = [PersonInline]
